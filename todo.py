@@ -3,7 +3,7 @@
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-
+todoList = []
 
 @app.route("/")
 def hello():
@@ -11,9 +11,9 @@ def hello():
 
 @app.route('/addTodo', methods=['POST'])
 def addTodo():
-    text1 = request.form['text1']
-    print(text1)
-    return(text1)
+    todoItem = request.form['text1']
+    todoList.append(todoItem)
+    return render_template('home.html', todoList=todoList)
 
 
 if __name__ == "__main__":
